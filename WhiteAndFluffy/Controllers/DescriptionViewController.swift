@@ -87,7 +87,16 @@ class DescriptionViewController: UIViewController {
         locationPhotoLabel.text = "Location: \(model.location)"
         authorNameLabel.text = "Author: \(model.authorName)"
         downloadCountLabel.text = "Downloads: \(model.downloadCount)"
-        createDateLabel.text = "Create date: \(model.dateAdded)"
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        if let date = dateFormatter.date(from: model.dateAdded) {
+            createDateLabel.text = "Create date: \(date)"
+            print(date) // Выводит: 2023-06-12 10:30:00 +0000
+        } else {
+            print("Неверный формат даты")
+        }
+        
     }
     
     
